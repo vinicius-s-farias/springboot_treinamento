@@ -1,4 +1,4 @@
-package br.com.solinftec.treinamentospringboot.dto.cooperativa;
+package br.com.solinftec.treinamentospringboot.Dto.cooperativa;
 
 import br.com.solinftec.treinamentospringboot.model.Cooperativa;
 import br.com.solinftec.treinamentospringboot.model.Fazendeiro;
