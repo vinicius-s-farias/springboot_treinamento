@@ -1,9 +1,11 @@
 package br.com.solinftec.treinamentospringboot.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -16,5 +18,10 @@ public class Tipo_Servico {
 
     @Column(name = "DESCRICAO")
     private String Descricao;
+
+    @OneToMany(mappedBy = "TIPO_SERVICO")
+    @JsonBackReference
+    private List<Ordem_Servico> ordem_servicos;
+
 
 }

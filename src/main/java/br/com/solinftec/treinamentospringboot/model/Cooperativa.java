@@ -1,5 +1,6 @@
 package br.com.solinftec.treinamentospringboot.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
@@ -31,4 +32,8 @@ public class Cooperativa {
         joinColumns={@JoinColumn(name = "ID_COOPERATIVA", referencedColumnName = "ID")},
         inverseJoinColumns = {@JoinColumn(name = "ID_FAZENDEIRO", referencedColumnName = "ID")})
     private List<Fazendeiro> fazendeiros;
+
+    @OneToMany(mappedBy = "ID_COOPERATIVA")
+    @JsonBackReference
+    private List<Ordem_Servico> ordem_servicos;
 }

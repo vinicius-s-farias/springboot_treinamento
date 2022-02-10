@@ -1,8 +1,11 @@
 package br.com.solinftec.treinamentospringboot.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -13,9 +16,13 @@ public class Fazenda {
         @Column(name = "ID")
         private Long id;
 
+        @Column(name = "DESCRICAO")
+        private String descricao;
+
         @ManyToOne
         @JoinColumn(name = "id_fazendeiro")
-        private Fazendeiro ID_FAZENDEIRO;
+        @JsonManagedReference
+        private Fazendeiro fazendeiro;
 
         @Column(name = "AREA")
         private float area;
@@ -26,6 +33,15 @@ public class Fazenda {
         @Column(name = "LONGITUDE")
         private float longitude;
 
+        @OneToMany(mappedBy = "ID_FAZENDA")
+        @JsonBackReference
+        private List<Ordem_Servico> ordem_servicos;
 
 
+        public Fazenda(Fazenda fazenda) {
+        }
+
+        public Fazenda() {
+
+        }
 }

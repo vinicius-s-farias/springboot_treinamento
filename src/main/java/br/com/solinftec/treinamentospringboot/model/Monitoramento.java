@@ -1,5 +1,6 @@
 package br.com.solinftec.treinamentospringboot.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -24,10 +25,15 @@ public class Monitoramento {
     private Date Data_Hora;
 
     @ManyToOne
+    @JsonManagedReference
     @JoinColumn(name = "ID_EQUIPAMENTO")
     private Equipamento ID_EQUIPAMENTO;
 
     @ManyToOne
+    @JsonManagedReference
     @JoinColumn(name = "ID_ORDEM_SERVICO")
     private Ordem_Servico ID_ORDEM_SERVICO;
+
+
+
 }

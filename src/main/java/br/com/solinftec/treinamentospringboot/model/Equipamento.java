@@ -1,8 +1,10 @@
 package br.com.solinftec.treinamentospringboot.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -22,7 +24,19 @@ public class Equipamento {
     @Column(name = "LONGITUDE")
     private Float longitude;
 
+    @Column(name = "ATIVO")
+    private Boolean ativo;
+
     @ManyToOne
     @JoinColumn(name = "ID_TIPO_EQUIPAMENTO")
     private Tipo_Equipamento id_tipo_equipamento;
+
+    @OneToMany(mappedBy = "ID_EQUIPAMENTO")
+    @JsonBackReference
+    private List<Monitoramento> monitoramentos;
+
+    @OneToMany(mappedBy = "ID_EQUIPAMENTO")
+    @JsonBackReference
+    private List<Ordem_Servico> ordem_servicos;
+
 }

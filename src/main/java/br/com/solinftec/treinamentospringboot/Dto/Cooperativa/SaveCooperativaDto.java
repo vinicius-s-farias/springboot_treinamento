@@ -1,8 +1,7 @@
-package br.com.solinftec.treinamentospringboot.Dto.cooperativa;
+package br.com.solinftec.treinamentospringboot.Dto.Cooperativa;
 
 import br.com.solinftec.treinamentospringboot.model.Cooperativa;
 import br.com.solinftec.treinamentospringboot.model.Fazendeiro;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.util.List;

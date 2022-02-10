@@ -33,8 +33,13 @@ public class Fazendeiro {
             inverseJoinColumns = {@JoinColumn(name = "ID_COOPERATIVA", referencedColumnName = "ID")})
     private List<Cooperativa> cooperativas;
 
+    @OneToMany(mappedBy = "fazendeiro")
+    @JsonBackReference
+    private List<Fazenda> fazendas;
 
     public Fazendeiro(Long id) {
         this.id = id;
     }
+
+
 }

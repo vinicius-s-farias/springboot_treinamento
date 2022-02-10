@@ -1,6 +1,7 @@
 package br.com.solinftec.treinamentospringboot.repository;
 
+import br.com.solinftec.treinamentospringboot.model.Fazenda;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface Fazenda extends JpaRepository<Fazenda, Long> {
+public interface FazendaRepository extends JpaRepository<Fazenda, Long> {
 }

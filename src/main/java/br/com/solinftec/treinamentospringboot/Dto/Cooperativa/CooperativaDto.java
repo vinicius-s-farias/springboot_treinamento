@@ -1,4 +1,4 @@
-package br.com.solinftec.treinamentospringboot.Dto.cooperativa;
+package br.com.solinftec.treinamentospringboot.Dto.Cooperativa;
 
 import br.com.solinftec.treinamentospringboot.model.Cooperativa;
 import lombok.Data;
@@ -9,6 +9,7 @@ public class CooperativaDto {
     private Long id;
     private String nome;
     private String email;
+
 
     public CooperativaDto(Cooperativa cooperativa){
         this.id= cooperativa.getId();

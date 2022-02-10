@@ -1,11 +1,15 @@
 package br.com.solinftec.treinamentospringboot.service;
 
-import br.com.solinftec.treinamentospringboot.dto.cooperativa.GetAllCooperativaDto;
-import br.com.solinftec.treinamentospringboot.dto.cooperativa.SaveCooperativaDto;
+import br.com.solinftec.treinamentospringboot.Dto.Cooperativa.CooperativaDto;
+import br.com.solinftec.treinamentospringboot.Dto.Cooperativa.GetAllCooperativaDto;
+import br.com.solinftec.treinamentospringboot.Dto.Cooperativa.SaveCooperativaDto;
+import br.com.solinftec.treinamentospringboot.configuration.TreinamentoDefaultException;
 import br.com.solinftec.treinamentospringboot.model.Cooperativa;
 import br.com.solinftec.treinamentospringboot.model.Fazendeiro;
 import br.com.solinftec.treinamentospringboot.repository.CooperativaRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,6 +20,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class CooperativaService {
+
 
     private final CooperativaRepository repository;
 
@@ -65,5 +70,22 @@ public class CooperativaService {
         } else {
             throw new Exception("COOPERATIVA_NOT_FOUND");
         }
+    }
+
+    public CooperativaDto getCooperativa(Long idCooperativa) throws TreinamentoDefaultException {
+        Cooperativa cooperativa = repository.findById(idCooperativa)
+                .orElseThrow(() -> new TreinamentoDefaultException("COOPERATIVA_NOT_FOUND"));
+        return new CooperativaDto(cooperativa);
+    }
+
+    public Page<CooperativaDto> getPage(Pageable pageable, String search) {
+        Page<Cooperativa> page = repository.findAllPaged(pageable, search);
+        return page.map(cooperativa -> new CooperativaDto(cooperativa));
+    }
+
+    public List<CooperativaDto> getCooperativasAtivas() {
+        return repository.findCooperativaByAtivoEqualsAndIdEqualsOrderById(true, 3L)
+                .stream().map(CooperativaDto::new)
+                .collect(Collectors.toList());
     }
 }

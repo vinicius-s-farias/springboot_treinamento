@@ -1,4 +1,4 @@
-package br.com.solinftec.treinamentospringboot.Dto.cooperativa;
+package br.com.solinftec.treinamentospringboot.Dto.Cooperativa;
 
 import br.com.solinftec.treinamentospringboot.model.Cooperativa;
 import lombok.Data;
